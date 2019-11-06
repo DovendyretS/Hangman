@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/galge"
+         />
+
+    <TextView
+        android:id="@+id/word_to_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/indtast_bogstav"
+        android:textAlignment="center"
+        />
+
+    <TableRow
+        android:gravity="center"
+        android:id="@+id/row1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Add elements/columns in the first row-->
+
+        <Button
+            android:id="@+id/b1_1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="A"
+            android:onClick="sendMessage">
+        </Button>
+        <Button
+            android:id="@+id/b1_2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="B"
+            android:onClick="sendMessage">
+        </Button>
+        <Button
+            android:id="@+id/b1_3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:onClick="sendMessage">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:id="@+id/b1_4"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="D">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:id="@+id/b1_5"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="E">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:id="@+id/b1_6"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="F">
+
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:text="G"
+            android:id="@+id/b1_7"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+        </Button>
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center"
+        android:id="@+id/row2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:onClick="sendMessage"
+            android:text="H"
+            android:id="@+id/b1_8"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <Button
+            android:onClick="sendMessage"
+            android:text="I"
+            android:id="@+id/b2_1"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:text="J"
+            android:id="@+id/b2_2"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:text="K"
+            android:id="@+id/b2_3"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:text="L"
+            android:id="@+id/b2_4"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:id="@+id/b2_5"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="M">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:id="@+id/b2_6"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="N">
+        </Button>
+
+    </TableRow>
+    <TableRow
+        android:gravity="center"
+        android:id="@+id/row3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:onClick="sendMessage"
+            android:text="O"
+            android:id="@+id/b2_7"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <Button
+            android:onClick="sendMessage"
+            android:text="P"
+            android:id="@+id/b2_8"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <Button
+            android:onClick="sendMessage"
+            android:text="Q"
+            android:id="@+id/b3_1"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:text="R"
+            android:id="@+id/b3_2"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:text="S"
+            android:id="@+id/b3_3"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:text="T"
+            android:id="@+id/b3_4"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:onClick="sendMessage">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:text="U"
+            android:id="@+id/b3_5"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center"
+        android:id="@+id/row4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <Button
+            android:onClick="sendMessage"
+            android:text="V"
+            android:id="@+id/b3_6"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:text="W"
+            android:id="@+id/b3_7"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <Button
+            android:onClick="sendMessage"
+            android:text="X"
+            android:id="@+id/b3_8"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <Button
+            android:id="@+id/b4_1"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:onClick="sendMessage"
+            android:text="Y">
+
+        </Button>
+
+        <Button
+            android:id="@+id/b4_2"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:onClick="sendMessage"
+            android:text="Z">
+
+        </Button>
+    </TableRow>
+</TableLayout>
