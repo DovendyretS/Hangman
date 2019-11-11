@@ -36,12 +36,9 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         setWord();
 
-
         Player temp = new Player(getIntent().getStringExtra("player_name"));
 
         players = loadData();
-
-
 
         if (players.isEmpty()) {
             player = new Player(getIntent().getStringExtra("player_name"));

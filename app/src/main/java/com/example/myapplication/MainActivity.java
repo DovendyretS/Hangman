@@ -54,8 +54,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage1(View v){
-        Intent highscoreActivity = new Intent(this,HighscoreActivity.class);
-        startActivity(highscoreActivity);
+        if (loadData().isEmpty()) {
+            popup("There are highscores yet");
+        }else {
+            Intent highscoreActivity = new Intent(this, HighscoreActivity.class);
+            startActivity(highscoreActivity);
+        }
 
     }
 
@@ -85,12 +89,13 @@ public class MainActivity extends AppCompatActivity {
     */
 
 
-    public void loadData(){
+    public ArrayList<Player> loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("player list",null);
         Type type = new TypeToken<List<Player>>() {}.getType();
         tempPlayers = gson.fromJson(json,type);
+        return gson.fromJson(json,type);
 
     }
 
