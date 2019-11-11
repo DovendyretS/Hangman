@@ -56,8 +56,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         }
 
         public void bindPlayer(@NonNull Player player){
-            mNameTextview.setText(player.getName());
-            mPointTextview.setText(String.valueOf(player.getPoints()));
+            mNameTextview.setText(player.getName()+" You have:");
+            mPointTextview.setText(player.getPoints() +" correct answers");
         }
     }
 

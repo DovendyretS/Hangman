@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <ImageView
         android:id="@+id/imageView"
@@ -9,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:src="@drawable/galge"
-         />
+        />
 
     <TextView
         android:id="@+id/word_to_guess"
@@ -18,6 +19,8 @@
         android:layout_marginTop="20dp"
         android:text="@string/indtast_bogstav"
         android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         />
 
     <TableRow
@@ -246,5 +249,44 @@
             android:text="Z">
 
         </Button>
+
+        <Button
+            android:id="@+id/b4_3"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:onClick="sendMessage"
+            android:text="Æ">
+        </Button>
+
+        <Button
+            android:id="@+id/b4_4"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:onClick="sendMessage"
+            android:text="Ø">
+        </Button>
+    </TableRow>
+    <TableRow
+        android:gravity="center"
+        android:id="@+id/row5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:onClick="sendMessage"
+            android:text="Å"
+            android:id="@+id/b5_1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:onClick="sendMessage"
+            android:text=" "
+            android:id="@+id/b5_2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+        </Button>
     </TableRow>
 </TableLayout>
+
+

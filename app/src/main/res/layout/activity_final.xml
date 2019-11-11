@@ -34,6 +34,31 @@
         app:layout_constraintBottom_toTopOf="@+id/won"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/highscore_menu"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Highscore"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/won"
+        app:srcCompat="@drawable/roundbutton"
+        android:onClick="main"/>
+
+    <Button
+        android:id="@+id/main_menu"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Main menu"
+        app:layout_constraintBottom_toTopOf="@+id/highscore_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/won"
+        app:srcCompat="@drawable/roundbutton"
+        android:onClick="highscore"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

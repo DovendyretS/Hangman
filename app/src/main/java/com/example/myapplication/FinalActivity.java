@@ -30,6 +30,16 @@ public class FinalActivity extends AppCompatActivity {
 
     }
 
+    public void main(View v){
+        Intent myintent = new Intent(this,HighscoreActivity.class);
+        startActivity(myintent);
+    }
+
+    public void highscore(View v){
+        Intent myintent = new Intent(this,MainActivity.class);
+        startActivity(myintent);
+    }
+
 
     public void end_game(View v){
         Intent myintent = new Intent(this,GameActivity.class);
