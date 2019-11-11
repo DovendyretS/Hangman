@@ -1,9 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,7 +17,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,14 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendMessage1(View v){
         if (loadData().isEmpty()) {
-            popup("There are highscores yet");
+            popup("There are no highscores yet");
         }else {
             Intent highscoreActivity = new Intent(this, HighscoreActivity.class);
             startActivity(highscoreActivity);
         }
 
     }
-
 
     public void popup(String warning){
         AlertDialog dialog = new AlertDialog.Builder(this)
@@ -76,26 +72,13 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    
-    /*
-    public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(players);
-        editor.putString("player list",json);
-        editor.apply();
-    }
-    */
-
-
-    public ArrayList<Player> loadData(){
+    public List<Player> loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("player list",null);
         Type type = new TypeToken<List<Player>>() {}.getType();
-        tempPlayers = gson.fromJson(json,type);
-        return gson.fromJson(json,type);
+
+        return tempPlayers = gson.fromJson(json,type);
 
     }
 
