@@ -193,6 +193,10 @@ public class Galgelogik {
       if (ordet.isEmpty()) continue; // spring over linjer med tomme ord
       if (!sværhedsgrader.contains(sværhedsgrad)) continue; // filtrér på sværhedsgrader
       muligeOrd.add(ordet);
+
+      muligeOrd.clear();
+      muligeOrd.add("kat");
+      muligeOrd.add("bil");
     }
 
     System.out.println("muligeOrd = " + muligeOrd);

@@ -3,16 +3,29 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class GameActivity extends AppCompatActivity {
+
+
+
+    ArrayList<Player> players = new ArrayList<>();
+    Player player;
+
     ArrayList<View> views = new ArrayList<>();
     Galgelogik logik = new Galgelogik();
     private Integer[] images = {R.drawable.galge, R.drawable.forkert1, R.drawable.forkert2, R.drawable.forkert3
@@ -24,6 +37,12 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         setWord();
 
+        Gson gson = new Gson();
+        player = gson.fromJson(getIntent().getStringExtra("myjson"),Player.class);
+
+        if (player == null) {
+            player = new Player(getIntent().getStringExtra("player_name"));
+        }
     }
 
     public void sendMessage(View v) {
@@ -77,6 +96,8 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (logik.erSpilletVundet()) {
+            player.addPoint();
+            saveData();
             Intent gameWon = new Intent(this, FinalActivity.class);
             gameWon.putExtra("tries", logik.getBrugteBogstaver().size());
             startActivity(gameWon);
@@ -109,4 +130,38 @@ public class GameActivity extends AppCompatActivity {
         }
         new getWord().execute();
     }
+
+    public void saveData(){
+        players = loadData();
+
+
+
+        for (Player tempPlayer : players) {
+            if (tempPlayer.getName().equals(getIntent().getStringExtra("player_name"))) {
+                tempPlayer.setPoints(player.getPoints());
+                break;
+            }else{
+                players.add(player);
+                break;
+            }
+        }
+
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(players);
+        editor.putString("player list",json);
+        editor.apply();
+    }
+
+    public ArrayList<Player> loadData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("player list",null);
+        Type type = new TypeToken<List<Player>>() {}.getType();
+
+        return gson.fromJson(json,type);
+    }
+
 }
