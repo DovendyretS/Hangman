@@ -29,8 +29,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     @Override
     public PlayerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
-        PlayerViewHolder viewHolder = new PlayerViewHolder(view);
-        return viewHolder;
+        return new PlayerViewHolder(view);
     }
 
     @Override

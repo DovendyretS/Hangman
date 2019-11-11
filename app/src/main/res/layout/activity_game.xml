@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:src="@drawable/galge"
-        />
+        android:contentDescription="@string/galge" />
 
     <TextView
         android:id="@+id/word_to_guess"

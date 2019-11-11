@@ -3,4 +3,5 @@
     <string name="hangman">Hangman</string>
     <string name="indtast_bogstav">Indtast Bogstav</string>
     <string name="guessed_on">Bogstaver du har gættet på</string>
+    <string name="galge">Galge</string>
 </resources>
