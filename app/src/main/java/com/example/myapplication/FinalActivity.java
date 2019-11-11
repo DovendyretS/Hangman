@@ -33,6 +33,7 @@ public class FinalActivity extends AppCompatActivity {
 
     public void end_game(View v){
         Intent myintent = new Intent(this,GameActivity.class);
+        myintent.putExtra("player_name",getIntent().getStringExtra("player_name"));
         startActivity(myintent);
     }
 }

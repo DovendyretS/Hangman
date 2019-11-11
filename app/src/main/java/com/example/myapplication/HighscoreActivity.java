@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+
 public class HighscoreActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
@@ -46,5 +47,15 @@ public class HighscoreActivity extends AppCompatActivity {
         Type type = new TypeToken<ArrayList<Player>>(){}.getType();
         players = gson.fromJson(json,type);
 
+    }
+
+    public void saveData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(players);
+        editor.putString("player list",json);
+        editor.apply();
     }
 }

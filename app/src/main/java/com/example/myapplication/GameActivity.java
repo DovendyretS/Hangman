@@ -21,12 +21,11 @@ import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
 
-
-
-    ArrayList<Player> players = new ArrayList<>();
     Player player;
 
+    ArrayList<Player> players = new ArrayList<>();
     ArrayList<View> views = new ArrayList<>();
+
     Galgelogik logik = new Galgelogik();
     private Integer[] images = {R.drawable.galge, R.drawable.forkert1, R.drawable.forkert2, R.drawable.forkert3
             , R.drawable.forkert4, R.drawable.forkert5, R.drawable.forkert6};
@@ -37,12 +36,33 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         setWord();
 
-        Gson gson = new Gson();
-        player = gson.fromJson(getIntent().getStringExtra("myjson"),Player.class);
 
-        if (player == null) {
+        Player temp = new Player(getIntent().getStringExtra("player_name"));
+
+        players = loadData();
+
+
+
+        if (players.isEmpty()) {
             player = new Player(getIntent().getStringExtra("player_name"));
+            players.add(player);
+        }else{
+            if (!checkPlayer(temp)) {
+                player = temp;
+                players.add(player);
+            }
         }
+
+    }
+
+    public boolean checkPlayer(Player p){
+        for (Player tempPlayer: players) {
+            if (p.getName().equals(tempPlayer.getName())) {
+                player = tempPlayer;
+                return true;
+            }
+        }
+        return false;
     }
 
     public void sendMessage(View v) {
@@ -100,7 +120,9 @@ public class GameActivity extends AppCompatActivity {
             saveData();
             Intent gameWon = new Intent(this, FinalActivity.class);
             gameWon.putExtra("tries", logik.getBrugteBogstaver().size());
+            gameWon.putExtra("player_name",getIntent().getStringExtra("player_name"));
             startActivity(gameWon);
+
         }
 
         views.clear();
@@ -110,7 +132,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setWord() {
-        class getWord extends AsyncTask<Void, Void, Void>{
+        class getWord extends AsyncTask<Void, Void, Void> {
 
             @Override
             protected Void doInBackground(Void... voids) {
@@ -131,21 +153,15 @@ public class GameActivity extends AppCompatActivity {
         new getWord().execute();
     }
 
+    public ArrayList<Player> loadData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("player list",null);
+        Type type = new TypeToken<ArrayList<Player>>(){}.getType();
+        return gson.fromJson(json,type);
+    }
+
     public void saveData(){
-        players = loadData();
-
-
-
-        for (Player tempPlayer : players) {
-            if (tempPlayer.getName().equals(getIntent().getStringExtra("player_name"))) {
-                tempPlayer.setPoints(player.getPoints());
-                break;
-            }else{
-                players.add(player);
-                break;
-            }
-        }
-
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -153,15 +169,6 @@ public class GameActivity extends AppCompatActivity {
         String json = gson.toJson(players);
         editor.putString("player list",json);
         editor.apply();
-    }
-
-    public ArrayList<Player> loadData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("player list",null);
-        Type type = new TypeToken<List<Player>>() {}.getType();
-
-        return gson.fromJson(json,type);
     }
 
 }

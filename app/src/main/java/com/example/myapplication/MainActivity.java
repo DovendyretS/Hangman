@@ -44,16 +44,6 @@ public class MainActivity extends AppCompatActivity {
         EditText name = findViewById(R.id.playername);
         String playerName = String.valueOf(name.getText());
 
-        for (Player player : tempPlayers) {
-            if (playerName.equals(player.getName())) {
-                Gson gson = new Gson();
-                String myjson = gson.toJson(player);
-                gameActivity.putExtra("myjson",myjson);
-            }
-        }
-
-
-
         if (playerName.isEmpty()) {
            popup("Please enter a name");
 

@@ -3,7 +3,7 @@ package com.example.myapplication;
 public class Player {
 
     private String name;
-    private int points = 2;
+    private int points = 0;
 
     public Player(String name) {
         this.name = name;
