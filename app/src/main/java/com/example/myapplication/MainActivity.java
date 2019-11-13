@@ -51,13 +51,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage1(View v){
-        if (loadData().isEmpty()) {
-            popup("There are no highscores yet");
-        }else {
-            Intent highscoreActivity = new Intent(this, HighscoreActivity.class);
-            startActivity(highscoreActivity);
-        }
+        try {
+            if (loadData().isEmpty()) {
+                popup("There are no highscores yet");
+            }else {
+                Intent highscoreActivity = new Intent(this, HighscoreActivity.class);
+                startActivity(highscoreActivity);
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            popup("There are no highscores yet");
+        }
     }
 
     public void popup(String warning){
