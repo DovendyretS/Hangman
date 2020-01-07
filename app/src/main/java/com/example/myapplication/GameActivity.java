@@ -40,15 +40,22 @@ public class GameActivity extends AppCompatActivity {
 
         players = loadData();
 
-        if (players.isEmpty()) {
-            player = new Player(getIntent().getStringExtra("player_name"));
-            players.add(player);
-        }else{
-            if (!checkPlayer(temp)) {
-                player = temp;
-                players.add(player);
+        try {
+            if (players.isEmpty()) {
+            }else{
+                if (!checkPlayer(temp)) {
+                    player = temp;
+                    players.add(player);
+                }
             }
+        } catch (Exception e) {
+            player = new Player(getIntent().getStringExtra("player_name"));
+            if (players == null)
+                players = new ArrayList<>();
+            players.add(player);
+            e.printStackTrace();
         }
+
 
     }
 
