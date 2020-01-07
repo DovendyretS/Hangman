@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".HighscoreActivity"></activity>
-        <activity android:name=".FinalActivity" />
+        <activity android:name=".GameEndActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
