@@ -13,7 +13,7 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:onClick="end_game"
+        android:onClick="playAgain"
         android:text="Continue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/won"
         app:srcCompat="@drawable/roundbutton"
-        android:onClick="main"/>
+        android:onClick="mainMenu"/>
 
     <Button
         android:id="@+id/main_menu"

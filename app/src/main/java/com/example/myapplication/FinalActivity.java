@@ -1,11 +1,11 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class FinalActivity extends AppCompatActivity {
@@ -18,8 +18,14 @@ public class FinalActivity extends AppCompatActivity {
     }
 
     public void printMessage(){
+
+        // Gets the correct word only if the player died
         String word = getIntent().getStringExtra("correct_word");
+
+        // Gets the amount of tries used by the player
         int tries = getIntent().getIntExtra("tries",0);
+
+        // Checks if the player won or lost and prints accordingly
         if (word == null){
             TextView message = findViewById(R.id.textView);
             message.setText("Du vandt!\nDu brugte "+tries+" forsøg");
@@ -27,24 +33,22 @@ public class FinalActivity extends AppCompatActivity {
             TextView message = findViewById(R.id.textView);
             message.setText("Du tabte!\nOrdet var:\n"+ word);
         }
-
     }
 
-    public void main(View v){
-        Intent myintent = new Intent(this,HighscoreActivity.class);
-        startActivity(myintent);
+    public void mainMenu(View v){
+        Intent myIntent = new Intent(this,HighscoreActivity.class);
+        startActivity(myIntent);
     }
 
     public void highscore(View v){
-        Intent myintent = new Intent(this,MainActivity.class);
-        startActivity(myintent);
+        Intent myIntent = new Intent(this,MainActivity.class);
+        startActivity(myIntent);
     }
 
-
-    public void end_game(View v){
-        Intent myintent = new Intent(this,GameActivity.class);
-        myintent.putExtra("player_name",getIntent().getStringExtra("player_name"));
-        startActivity(myintent);
+    public void playAgain(View v){
+        Intent myIntent = new Intent(this,GameActivity.class);
+        myIntent.putExtra("player_name",getIntent().getStringExtra("player_name"));
+        startActivity(myIntent);
     }
 }
 

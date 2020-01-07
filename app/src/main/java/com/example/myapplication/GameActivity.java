@@ -1,34 +1,25 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.myapplication.SharedPref.save;
 
 
 public class GameActivity extends AppCompatActivity {
 
     Player player;
-
     List<Player> players = new ArrayList<>();
     ArrayList<View> views = new ArrayList<>();
-
     Galgelogik logik = new Galgelogik();
+
     private Integer[] images = {R.drawable.galge, R.drawable.forkert1, R.drawable.forkert2, R.drawable.forkert3
             , R.drawable.forkert4, R.drawable.forkert5, R.drawable.forkert6};
 
@@ -36,26 +27,35 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        // sets the word to be guessed
         setWord();
 
+
+        System.out.println("hej\n "+logik.getOrdet());
+        // temporary player
         Player temp = new Player(getIntent().getStringExtra("player_name"));
 
+        // if the database is empty or null a new player is added to the player list
         if (SharedPref.load() == null || SharedPref.load().isEmpty()) {
             player = temp;
             players.add(player);
         }
 
-        else{
+        // if the database is NOT empty we will check if a player with same name exists already
+        // and add to his existing points otherwise we add a new player to the player list
+        else {
             players = SharedPref.load();
-            if ( !checkPlayer(temp)) {
+            if (!checkPlayerExists(temp)) {
                 player = temp;
                 players.add(player);
             }
         }
     }
 
-    public boolean checkPlayer(Player p){
-        for (Player tempPlayer: players) {
+    // checks if a player with the same name already exists
+    public boolean checkPlayerExists(Player p) {
+        for (Player tempPlayer : players) {
             if (p.getName().equals(tempPlayer.getName())) {
                 player = tempPlayer;
                 return true;
@@ -64,20 +64,26 @@ public class GameActivity extends AppCompatActivity {
         return false;
     }
 
+
+    // checks if the letter from the button pressed is part of the word-to-be guessed
     public void checkLetter(View v) {
+
+        // adds the letter to a list so we can't use it again
         views.add(v);
+
+        // gets the letter from the corresponding button
         String content = ((TextView) v).getText().toString();
 
         logik.gætBogstav(content.toLowerCase());
 
-        Drawable defaultButtonColor = v.getBackground();
 
-        isGameOver();
-        updateButtons(v, defaultButtonColor);
+        updateButtons(v);
         updateText();
         updateImage();
+        isGameOver();
 
     }
+
 
     public void updateText() {
         TextView hiddenLetter = findViewById(R.id.word_to_guess);
@@ -89,22 +95,22 @@ public class GameActivity extends AppCompatActivity {
         galge.setImageResource(images[logik.getAntalForkerteBogstaver()]);
     }
 
-    public void updateButtons(View v, Drawable defaultButtonColor) {
-        v.getBackground();
+    public void updateButtons(View v) {
+
         if (logik.erSidsteBogstavKorrekt()) {
             v.setEnabled(false);
             v.setBackgroundColor(0xFF00FF00);
         } else {
-            v.setBackgroundColor(0xFFFFFFFF);
+            v.setBackgroundColor(0X00574B);
             v.setEnabled(false);
         }
 
         if (logik.erSpilletSlut()) {
             for (View a : views) {
                 a.setEnabled(true);
-                a.setBackground(defaultButtonColor);
-            }
+                a.setBackgroundColor(0x008577);
 
+            }
         }
     }
 

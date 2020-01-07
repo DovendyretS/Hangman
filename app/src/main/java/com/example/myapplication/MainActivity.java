@@ -1,22 +1,16 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     public void highscore(View v){
 
         //load data from previous games
-       // tempPlayers = SharedPref.load();
+        tempPlayers = SharedPref.load();
 
         // Check if highscore data is empty or null
         if (tempPlayers == null || tempPlayers.isEmpty())

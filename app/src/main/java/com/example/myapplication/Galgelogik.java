@@ -195,7 +195,8 @@ public class Galgelogik {
       muligeOrd.add(ordet);
     }
 
-    System.out.println("muligeOrd = " + muligeOrd);
+    System.out.println(ordet);
     nulstil();
+      System.out.println(ordet);
   }
 }
