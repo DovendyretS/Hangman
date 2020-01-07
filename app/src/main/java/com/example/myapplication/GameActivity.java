@@ -16,14 +16,16 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
+import static com.example.myapplication.SharedPref.save;
 
 
 public class GameActivity extends AppCompatActivity {
 
     Player player;
 
-    ArrayList<Player> players = new ArrayList<>();
+    List<Player> players = new ArrayList<>();
     ArrayList<View> views = new ArrayList<>();
 
     Galgelogik logik = new Galgelogik();
@@ -38,25 +40,18 @@ public class GameActivity extends AppCompatActivity {
 
         Player temp = new Player(getIntent().getStringExtra("player_name"));
 
-        players = loadData();
-
-        try {
-            if (players.isEmpty()) {
-            }else{
-                if (!checkPlayer(temp)) {
-                    player = temp;
-                    players.add(player);
-                }
-            }
-        } catch (Exception e) {
-            player = new Player(getIntent().getStringExtra("player_name"));
-            if (players == null)
-                players = new ArrayList<>();
+        if (SharedPref.load() == null || SharedPref.load().isEmpty()) {
+            player = temp;
             players.add(player);
-            e.printStackTrace();
         }
 
-
+        else{
+            players = SharedPref.load();
+            if ( !checkPlayer(temp)) {
+                player = temp;
+                players.add(player);
+            }
+        }
     }
 
     public boolean checkPlayer(Player p){
@@ -69,9 +64,10 @@ public class GameActivity extends AppCompatActivity {
         return false;
     }
 
-    public void sendMessage(View v) {
+    public void checkLetter(View v) {
         views.add(v);
         String content = ((TextView) v).getText().toString();
+
         logik.gætBogstav(content.toLowerCase());
 
         Drawable defaultButtonColor = v.getBackground();
@@ -121,7 +117,7 @@ public class GameActivity extends AppCompatActivity {
 
         if (logik.erSpilletVundet()) {
             player.addPoint();
-            saveData();
+            SharedPref.save(players);
             Intent gameWon = new Intent(this, FinalActivity.class);
             gameWon.putExtra("tries", logik.getBrugteBogstaver().size());
             gameWon.putExtra("player_name",getIntent().getStringExtra("player_name"));
@@ -155,24 +151,6 @@ public class GameActivity extends AppCompatActivity {
             }
         }
         new getWord().execute();
-    }
-
-    public ArrayList<Player> loadData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("player list",null);
-        Type type = new TypeToken<ArrayList<Player>>(){}.getType();
-        return gson.fromJson(json,type);
-    }
-
-    public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        Gson gson = new Gson();
-        String json = gson.toJson(players);
-        editor.putString("player list",json);
-        editor.apply();
     }
 
 }

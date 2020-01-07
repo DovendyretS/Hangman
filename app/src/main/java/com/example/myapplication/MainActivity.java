@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,19 +29,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPref.init(getApplicationContext());
+
         TextView textView = findViewById(R.id.title);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/titlefont.otf");
         textView.setTypeface(typeface);
 
-        loadData();
-
     }
 
-    public void sendMessage(View v){
+    public void playGame(View v){
         Intent gameActivity = new Intent(this,GameActivity.class);
         EditText name = findViewById(R.id.playername);
         String playerName = String.valueOf(name.getText());
 
+        //If playername is empty then popup warning
         if (playerName.isEmpty()) {
            popup("Please enter a name");
 
@@ -50,19 +52,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void sendMessage1(View v){
-        try {
-            if (loadData().isEmpty()) {
-                popup("There are no highscores yet");
-            }else {
-                Intent highscoreActivity = new Intent(this, HighscoreActivity.class);
-                startActivity(highscoreActivity);
-            }
+    public void highscore(View v){
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            popup("There are no highscores yet");
+        //load data from previous games
+       // tempPlayers = SharedPref.load();
+
+        // Check if highscore data is empty or null
+        if (tempPlayers == null || tempPlayers.isEmpty())
+            popup("Highscores not available");
+        else {
+            Intent highscoreActivity = new Intent(this, HighscoreActivity.class);
+            startActivity(highscoreActivity);
         }
+
     }
 
     public void popup(String warning){
@@ -76,15 +78,4 @@ public class MainActivity extends AppCompatActivity {
                 .create();
         dialog.show();
     }
-
-    public List<Player> loadData(){
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("player list",null);
-        Type type = new TypeToken<List<Player>>() {}.getType();
-
-        return tempPlayers = gson.fromJson(json,type);
-
-    }
-
 }
