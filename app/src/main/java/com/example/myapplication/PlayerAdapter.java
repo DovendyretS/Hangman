@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
     private List<Player> mPlayers;
@@ -43,15 +41,15 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     }
 
     public class PlayerViewHolder extends RecyclerView.ViewHolder{
-        TextView mNameTextview = itemView.findViewById(R.id.playerNameTextView);
-        TextView mPointTextview = itemView.findViewById(R.id.pointsTextView);
+        TextView mNameTextview;
+        TextView mPointTextview;
 
-        private Context mContext;
 
         public PlayerViewHolder(View itemView){
             super(itemView);
-            ButterKnife.bind(this,itemView);
-            mContext = itemView.getContext();
+            mNameTextview = itemView.findViewById(R.id.playerNameTextView);
+            mPointTextview = itemView.findViewById(R.id.pointsTextView);
+
         }
 
         public void bindPlayer(@NonNull Player player){

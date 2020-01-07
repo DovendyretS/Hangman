@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">s185129 Anders</string>
     <string name="hangman">Hangman</string>
     <string name="indtast_bogstav">Indtast Bogstav</string>
     <string name="guessed_on">Bogstaver du har gættet på</string>
