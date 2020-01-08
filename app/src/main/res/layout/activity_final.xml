@@ -5,8 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameEndActivity"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:id="@+id/parent_layout">
 
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/won"
@@ -60,5 +65,16 @@
         app:layout_constraintTop_toBottomOf="@+id/won"
         app:srcCompat="@drawable/roundbutton"
         android:onClick="highscore"/>
+
+    <ImageView
+        android:id="@+id/looseimage"
+        android:layout_width="158dp"
+        android:layout_height="167dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/downloadd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

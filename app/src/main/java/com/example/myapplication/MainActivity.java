@@ -25,9 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPref.init(getApplicationContext());
 
-        TextView textView = findViewById(R.id.title);
+        TextView title = findViewById(R.id.title);
+
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/titlefont.otf");
-        textView.setTypeface(typeface);
+        title.setTypeface(typeface);
+
 
     }
 

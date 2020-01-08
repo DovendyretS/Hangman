@@ -50,6 +50,10 @@ public class GameActivity extends AppCompatActivity {
                 players.add(player);
             }
         }
+
+        TextView playernName = findViewById(R.id.player_name);
+        playernName.setText("Du spiller som "+player.getName());
+
     }
 
     // checks if a player with the same name already exists
@@ -103,7 +107,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void updateButtons(View v) {
 
-        // disables the buttons and changes their colors
+        // disables the buttons and changes their color
         if (logik.erSidsteBogstavKorrekt()) {
             v.setEnabled(false);
             v.setBackgroundColor(0xFF00FF00);
