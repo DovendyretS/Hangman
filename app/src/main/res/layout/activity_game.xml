@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/player_name"
         android:textColor="@color/white"
         android:layout_gravity="center"
@@ -17,7 +17,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/galge"
         android:contentDescription="@string/galge" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/word_to_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/indtast_bogstav"
         android:textAlignment="center"
         android:textSize="20sp"

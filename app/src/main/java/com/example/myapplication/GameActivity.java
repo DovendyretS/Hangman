@@ -132,7 +132,9 @@ public class GameActivity extends AppCompatActivity {
             Intent gameLost = new Intent(this, GameEndActivity.class);
             gameLost.putExtra("correct_word", logik.getOrdet());
             gameLost.putExtra("player_name", getIntent().getStringExtra("player_name"));
+            finish();
             startActivity(gameLost);
+
         }
 
         if (logik.erSpilletVundet()) {
@@ -145,7 +147,9 @@ public class GameActivity extends AppCompatActivity {
             Intent gameWon = new Intent(this, GameEndActivity.class);
             gameWon.putExtra("tries", logik.getBrugteBogstaver().size());
             gameWon.putExtra("player_name",getIntent().getStringExtra("player_name"));
+            finish();
             startActivity(gameWon);
+
 
         }
 

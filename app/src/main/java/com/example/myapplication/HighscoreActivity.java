@@ -43,7 +43,7 @@ public class HighscoreActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true);
 
-        Toast.makeText(this, "Hold fingeren nede på et navn\nfor at forsætte som den samme spiller", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Hold fingeren nede på et navn\nfor at slette en spiller", Toast.LENGTH_LONG).show();
     }
 
 }

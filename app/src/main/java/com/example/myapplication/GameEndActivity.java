@@ -33,7 +33,6 @@ public class GameEndActivity extends AppCompatActivity {
     }
 
     public void printMessage(){
-        CommonConfetti.rainingConfetti(findViewById(R.id.parent_layout), new int[] {Color.WHITE} ).infinite();
 
         // Gets the correct word only if the player died
         String word = getIntent().getStringExtra("correct_word");

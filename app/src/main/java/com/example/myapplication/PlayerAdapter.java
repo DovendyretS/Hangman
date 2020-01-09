@@ -8,11 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
@@ -37,7 +42,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
 
     @Override
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
+        Collections.sort(mPlayers, new Comparator<Player>() {
+            @Override
+            public int compare(Player o1, Player o2) {
+                return Integer.compare(o2.getPoints(), o1.getPoints());
+            }
+        });
         holder.bindPlayer(mPlayers.get(position));
+
     }
 
     @Override
@@ -70,9 +82,11 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
                 @Override
                 public boolean onLongClick(View v) {
                     int pos = getAdapterPosition();
-                    Intent i = new Intent(c, GameActivity.class);
-                    i.putExtra("player_name", mPlayers.get(pos).getName());
-                    c.startActivity(i);
+                    Toast.makeText(c, "Du har slettet "+mPlayers.get(pos).getName(), Toast.LENGTH_SHORT).show();
+                    mPlayers.remove(pos);
+                    notifyItemRemoved(pos);
+                    notifyItemRangeChanged(pos, mPlayers.size());
+                    SharedPref.save(mPlayers);
                     return true;
                 }
             });
@@ -89,18 +103,22 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
                 }
             }
 
+            try {
+                if (player == mPlayers.get(0)) {
+                    mImageView.setImageResource(R.drawable.firstplace);
+                    mImageView.setVisibility(View.VISIBLE);
+                }
+                if (player == mPlayers.get(1)) {
+                    mImageView.setImageResource(R.drawable.secondplace);
+                    mImageView.setVisibility(View.VISIBLE);
+                }
+                if (player == mPlayers.get(2)) {
+                    mImageView.setImageResource(R.drawable.thirdplace);
+                    mImageView.setVisibility(View.VISIBLE);
+                }
+            }
+            catch (Exception ignored){
 
-            if (player == mPlayers.get(0)){
-                mImageView.setImageResource(R.drawable.firstplace);
-                mImageView.setVisibility(View.VISIBLE);
-            }
-            if (player == mPlayers.get(1)){
-                mImageView.setImageResource(R.drawable.secondplace);
-                mImageView.setVisibility(View.VISIBLE);
-            }
-            if (player == mPlayers.get(2)){
-                mImageView.setImageResource(R.drawable.thirdplace);
-                mImageView.setVisibility(View.VISIBLE);
             }
 
             mRank.setText(rank);

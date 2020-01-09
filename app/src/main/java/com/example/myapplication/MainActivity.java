@@ -49,18 +49,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void highscore(View v){
-
-        //load data from previous games
-        tempPlayers = SharedPref.load();
-
-        // Check if highscore data is empty or null
-        if (tempPlayers == null || tempPlayers.isEmpty())
-            popup("Highscores not available");
-        else {
-            Intent highscoreActivity = new Intent(this, HighscoreActivity.class);
-            startActivity(highscoreActivity);
-        }
-
+        Intent highscoreActivity = new Intent(this, HighscoreActivity.class);
+        startActivity(highscoreActivity);
     }
 
     public void popup(String warning){
