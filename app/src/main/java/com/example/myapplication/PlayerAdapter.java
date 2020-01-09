@@ -68,8 +68,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
             super(itemView);
 
             Typeface type = Typeface.createFromAsset(c.getAssets(),"fonts/ARCADE_N.TTF" );
+
             mRank = itemView.findViewById(R.id.rank);
-            System.out.println(mRank.toString());
             mNameTextview = itemView.findViewById(R.id.navn);
             mPointTextview = itemView.findViewById(R.id.point);
             mImageView = itemView.findViewById(R.id.trophy);
@@ -90,8 +90,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
                     return true;
                 }
             });
-
-
 
         }
 
