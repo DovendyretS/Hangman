@@ -51,8 +51,8 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-        TextView playernName = findViewById(R.id.player_name);
-        playernName.setText("Du spiller som "+player.getName());
+        TextView playerName = findViewById(R.id.player_name);
+        playerName.setText("Du spiller som "+player.getName());
 
     }
 
